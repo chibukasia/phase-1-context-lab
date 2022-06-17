@@ -21,3 +21,39 @@ const allWagesFor = function () {
     return payable
 }
 
+function createEmployeeRecord(empArray){
+    return {
+        firstName: empArray[0],
+        familyName: empArray[1],
+        title: empArray[2],
+        payPerHour: empArray[3],
+        timeInEvents:[],
+        timeOutEvents:[]
+    };
+}
+
+function createEmployeeRecords(empRecords){
+    return empRecords.map(function(eachRec){
+        createEmployeeRecord(eachRec)
+    })
+}
+
+function createTimeInEvent(dateStamp){
+    let [dateIn, hourIn] = dateStamp.split(" ");
+    const timeObj = {
+        type: "TimeIn",
+        hour: hourIn,
+        date: dateIn
+    }
+    return this.timeInEvents.push(timeObj);
+}
+
+function createTimeOutEvent(dateStamp){
+    let [dateOut, hourOut] = dateStamp.split(" ");
+    const timeObj = {
+        type: "TimeOut",
+        hour: hourOut,
+        date: dateOut
+    }
+    return this.timeOutEvents.push(timeObj);
+}
